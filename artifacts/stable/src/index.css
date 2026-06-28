@@ -39,35 +39,35 @@
 
 :root {
   --radius: 0.75rem;
-  --background: oklch(0.16 0.018 260);
-  --foreground: oklch(0.97 0.005 240);
-  --surface: oklch(0.19 0.02 260);
-  --surface-2: oklch(0.22 0.022 260);
-  --card: oklch(0.19 0.02 260);
-  --card-foreground: oklch(0.97 0.005 240);
-  --popover: oklch(0.19 0.02 260);
-  --popover-foreground: oklch(0.97 0.005 240);
-  --primary: oklch(0.72 0.19 45);
-  --primary-foreground: oklch(0.16 0.018 260);
-  --secondary: oklch(0.25 0.025 260);
-  --secondary-foreground: oklch(0.97 0.005 240);
-  --muted: oklch(0.23 0.022 260);
-  --muted-foreground: oklch(0.7 0.02 250);
+  --background: oklch(0.98 0.002 240);
+  --foreground: oklch(0.12 0.01 260);
+  --surface: oklch(0.94 0.005 260);
+  --surface-2: oklch(0.90 0.008 260);
+  --card: oklch(0.96 0.003 260);
+  --card-foreground: oklch(0.12 0.01 260);
+  --popover: oklch(0.97 0.003 260);
+  --popover-foreground: oklch(0.12 0.01 260);
+  --primary: oklch(0.55 0.22 27);
+  --primary-foreground: oklch(0.98 0.002 240);
+  --secondary: oklch(0.92 0.008 260);
+  --secondary-foreground: oklch(0.12 0.01 260);
+  --muted: oklch(0.93 0.005 260);
+  --muted-foreground: oklch(0.46 0.02 260);
   --accent: oklch(0.82 0.17 85);
-  --accent-foreground: oklch(0.16 0.018 260);
-  --destructive: oklch(0.6 0.22 27);
-  --destructive-foreground: oklch(0.97 0.005 240);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.72 0.19 45 / 60%);
+  --accent-foreground: oklch(0.12 0.01 260);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0.002 240);
+  --border: oklch(0 0 0 / 12%);
+  --input: oklch(0 0 0 / 8%);
+  --ring: oklch(0.55 0.22 27 / 50%);
   --orange: #EF4444;
   --gold: #F04A30;
 
-  --gradient-hero: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(239,68,68,0.18), transparent 70%);
+  --gradient-hero: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(239,68,68,0.10), transparent 70%);
   --gradient-primary: linear-gradient(135deg, #EF4444 0%, #F04A30 100%);
-  --gradient-soft: linear-gradient(180deg, oklch(0.18 0.02 260) 0%, oklch(0.16 0.018 260) 100%);
-  --shadow-glow: 0 0 60px -10px rgba(239,68,68,0.45);
-  --shadow-elegant: 0 20px 60px -20px oklch(0 0 0 / 0.6);
+  --gradient-soft: linear-gradient(180deg, oklch(0.96 0.004 260) 0%, oklch(0.98 0.002 240) 100%);
+  --shadow-glow: 0 0 60px -10px rgba(239,68,68,0.25);
+  --shadow-elegant: 0 20px 60px -20px oklch(0 0 0 / 0.12);
 }
 
 @layer base {
@@ -79,7 +79,7 @@
     font-family: var(--font-sans);
     font-feature-settings: "cv11", "ss01";
   }
-  ::selection { background: var(--orange); color: #0a0a0a; }
+  ::selection { background: var(--orange); color: #ffffff; }
 }
 
 @utility text-gradient {
@@ -90,22 +90,23 @@
 }
 
 @utility glass {
-  background: color-mix(in oklab, var(--surface) 60%, transparent);
+  background: color-mix(in oklab, white 80%, transparent);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid oklch(1 0 0 / 0.08);
+  border: 1px solid oklch(0 0 0 / 0.08);
 }
 
 @utility glass-strong {
-  background: color-mix(in oklab, var(--surface-2) 75%, transparent);
+  background: color-mix(in oklab, white 90%, transparent);
   backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid oklch(1 0 0 / 0.1);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid oklch(0 0 0 / 0.10);
 }
 
 @utility grid-bg {
   background-image:
-    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    linear-gradient(oklch(0 0 0 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0 0 0 / 0.05) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
@@ -121,6 +122,6 @@
 
 @keyframes ring-spin { to { transform: rotate(360deg); } }
 @keyframes float-slow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-@keyframes pulse-glow { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+@keyframes pulse-glow { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }
 @keyframes scroll-hint { 0% { transform: translateY(0); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(10px); opacity: 0; } }
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }

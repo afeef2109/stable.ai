@@ -100,7 +100,7 @@ function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground"
             >
               {l.label}
             </a>
@@ -124,7 +124,7 @@ function Hero() {
     <section id="top" className="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-6 pt-32">
       {/* Background layers */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 opacity-80">
+        <div className="absolute inset-0 opacity-25">
           <SoftAurora color1="#EF4444" color2="#EF4444" />
         </div>
         <div className="absolute inset-0 bg-background/55" />
@@ -188,7 +188,7 @@ function Hero() {
             </a>
             <a
               href="#contact"
-              className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium hover:bg-white/[0.06]"
+              className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium hover:bg-black/[0.06]"
             >
               Book a demo
               <ArrowUpRight className="h-4 w-4" />
@@ -199,7 +199,7 @@ function Hero() {
         {/* Scroll indicator */}
         <div className="mt-20 flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
           <span>Scroll</span>
-          <div className="relative h-10 w-[1px] overflow-hidden bg-white/10">
+          <div className="relative h-10 w-[1px] overflow-hidden bg-black/10">
             <span
               className="absolute left-0 top-0 h-3 w-[1px] bg-[#EF4444]"
               style={{ animation: "scroll-hint 1.6s ease-in-out infinite" }}
@@ -253,7 +253,7 @@ function FieldsGallery() {
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="mb-14 text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               Industries
             </div>
@@ -266,11 +266,11 @@ function FieldsGallery() {
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="relative h-[560px] w-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02]">
+          <div className="relative h-[560px] w-full overflow-hidden rounded-3xl border border-black/10 bg-black/[0.02]">
             <CircularGallery
               items={items}
               bend={3}
-              textColor="#ffffff"
+              textColor="#1a1a2e"
               borderRadius={0.05}
               scrollEase={0.05}
             />
@@ -315,9 +315,9 @@ function WhyFail() {
   ];
   return (
     <Section eyebrow="The problem" title="Why AI systems fail in production" subtitle="The hardest part of shipping AI isn't building it — it's keeping it reliable as models, prompts, and traffic change.">
-      <div className="grid gap-px overflow-hidden rounded-3xl border border-white/5 bg-white/5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-px overflow-hidden rounded-3xl border border-black/5 bg-black/5 md:grid-cols-2 lg:grid-cols-3">
         {reasons.map((r, i) => (
-          <div key={r.title} className="group relative bg-background p-8 transition-colors hover:bg-white/[0.02]">
+          <div key={r.title} className="group relative bg-background p-8 transition-colors hover:bg-black/[0.02]">
             <div className="font-mono text-xs text-muted-foreground">0{i + 1}</div>
             <h3 className="mt-4 text-lg font-medium">{r.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{r.body}</p>
@@ -436,7 +436,7 @@ function UseCases() {
           <Reveal key={c.title} delay={i * 0.06}>
             <Card padded>
               <div className="flex items-start gap-4">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04]">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-black/10 bg-black/[0.04]">
                   <c.icon className="h-5 w-5 text-[#F04A30]" />
                 </div>
                 <div className="min-w-0">
@@ -523,12 +523,12 @@ print(report.reliability_score)  # 94.6`}
 function CodeBlock({ title, code, lang }: { title: string; code: string; lang: string }) {
   return (
     <div className="glass overflow-hidden rounded-2xl">
-      <div className="flex items-center justify-between border-b border-white/5 px-4 py-2.5">
+      <div className="flex items-center justify-between border-b border-black/5 px-4 py-2.5">
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <Boxes className="h-3.5 w-3.5" />
           <span className="font-mono">{title}</span>
         </div>
-        <span className="rounded-full border border-white/10 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+        <span className="rounded-full border border-black/10 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
           {lang}
         </span>
       </div>
@@ -570,18 +570,18 @@ function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <Section id="faq" eyebrow="FAQ" title="Questions, answered" subtitle="If you need deeper detail, talk to our team.">
-      <div className="mx-auto max-w-3xl divide-y divide-white/5 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02]">
+      <div className="mx-auto max-w-3xl divide-y divide-black/5 overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02]">
         {items.map((it, i) => {
           const isOpen = open === i;
           return (
             <div key={it.q}>
               <button
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-white/[0.02]"
+                className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-black/[0.02]"
               >
                 <span className="text-sm font-medium sm:text-base">{it.q}</span>
                 <span
-                  className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border border-white/10 text-muted-foreground transition-transform ${isOpen ? "rotate-45" : ""}`}
+                  className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border border-black/10 text-muted-foreground transition-transform ${isOpen ? "rotate-45" : ""}`}
                 >
                   +
                 </span>
@@ -628,7 +628,7 @@ function Contact() {
     },
   ];
   const inputCls =
-    "w-full rounded-xl border border-white/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20";
+    "w-full rounded-xl border border-black/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20";
   return (
     <section id="contact" className="relative px-6 py-28 sm:py-36">
       <div className="mx-auto max-w-7xl">
@@ -645,7 +645,7 @@ function Contact() {
         {/* Headline */}
         <Reveal>
           <div className="mb-14 text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               Contact
             </div>
@@ -667,7 +667,7 @@ function Contact() {
               <Reveal key={c.title} delay={i * 0.06}>
                 <Card padded>
                   <div className="flex items-start gap-4">
-                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04]">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-black/10 bg-black/[0.04]">
                       <c.icon className="h-5 w-5 text-[#EF4444]" />
                     </div>
                     <div className="min-w-0">
@@ -738,7 +738,7 @@ function Contact() {
                     >
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="rounded-xl border-white/10 bg-[oklch(0.19_0.02_260)]">
+                    <SelectContent className="rounded-xl border-black/10 bg-white">
                       <SelectItem value="early-access">
                         Request Early Access
                       </SelectItem>
@@ -796,7 +796,7 @@ function Footer() {
     { title: "Resources", links: ["Documentation", "Changelog", "Status", "Privacy"] },
   ];
   return (
-    <footer className="relative mt-32 border-t border-white/5">
+    <footer className="relative mt-32 border-t border-black/8">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 opacity-40"
@@ -832,7 +832,7 @@ function Footer() {
           ))}
         </div>
       </div>
-      <div className="border-t border-white/5">
+      <div className="border-t border-black/8">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
           <span>© {new Date().getFullYear()} STABLE Labs, Inc. All rights reserved.</span>
           <span className="font-mono">stable.ai · enterprise reliability for AI</span>
@@ -846,7 +846,7 @@ function Social({ icon: Icon }: { icon: LucideIcon }) {
   return (
     <a
       href="#"
-      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-muted-foreground transition-colors hover:border-[#EF4444]/40 hover:text-[#EF4444]"
+      className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-colors hover:border-[#EF4444]/40 hover:text-[#EF4444]"
     >
       <Icon className="h-4 w-4" />
     </a>
@@ -872,7 +872,7 @@ function Section({
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="mb-14 max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               {eyebrow}
             </div>
@@ -891,7 +891,7 @@ function Section({
 function Card({ children, padded }: { children: React.ReactNode; padded?: boolean }) {
   return (
     <div
-      className={`group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-[#EF4444]/30 hover:bg-white/[0.04] ${padded ? "p-7" : "p-6"}`}
+      className={`group relative h-full overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02] transition-colors hover:border-[#EF4444]/30 hover:bg-black/[0.04] ${padded ? "p-7" : "p-6"}`}
     >
       <div
         aria-hidden
