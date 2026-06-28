@@ -46,12 +46,12 @@ import SoftAurora from "@/components/reactbits/SoftAurora/SoftAurora";
 import CircularGallery from "@/components/reactbits/CircularGallery/CircularGallery";
 const UNSPLASH = "?auto=format&fit=crop&w=1200&q=80";
 const galleryHealthcare = `https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0${UNSPLASH}`;
-const galleryMilitary = `https://images.unsplash.com/photo-1580082932707-520aed937b7b${UNSPLASH}`;
-const galleryDefense = `https://images.unsplash.com/photo-1561409106-5d1c3fd7e20a${UNSPLASH}`;
+const galleryMilitary = `https://images.unsplash.com/photo-1473186578172-c141e6798cf4${UNSPLASH}`;
+const galleryDefense = `https://images.unsplash.com/photo-1474302770737-173ee21bab63${UNSPLASH}`;
 const gallerySovereignty = `https://images.unsplash.com/photo-1524820197268-2bd8b4455b5a${UNSPLASH}`;
-const galleryAutonomy = `https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7${UNSPLASH}`;
+const galleryAutonomy = `https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1${UNSPLASH}`;
 const galleryRobotics = `https://images.unsplash.com/photo-1485827404703-89b55fcc595e${UNSPLASH}`;
-const galleryAi = `https://images.unsplash.com/photo-1589254065878-42efea3f5dda${UNSPLASH}`;
+const galleryAi = `https://images.unsplash.com/photo-1531746790731-6c087fecd65a${UNSPLASH}`;
 const galleryLifescience = `https://images.unsplash.com/photo-1532187863486-abf9dbad1b69${UNSPLASH}`;
 
 export const Route = createFileRoute("/")({
