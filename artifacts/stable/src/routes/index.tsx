@@ -17,8 +17,10 @@ import {
   Layers,
   Lock,
   type LucideIcon,
+  Moon,
   ShieldCheck,
   Sparkles,
+  Sun,
   Users,
   Workflow,
   Zap,
@@ -28,6 +30,7 @@ import {
 
 import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
 import {
   Select,
@@ -83,6 +86,7 @@ function LandingPage() {
 
 /* ----------------- NAV ----------------- */
 function Nav() {
+  const { theme, toggle } = useTheme();
   const links = [
     { href: "#platform", label: "Platform" },
     { href: "#how", label: "How it works" },
@@ -107,13 +111,26 @@ function Nav() {
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="group flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
-        >
-          Early access
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-        </a>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggle}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="grid h-8 w-8 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-all hover:bg-black/[0.07] hover:text-foreground"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+          </button>
+          <a
+            href="#contact"
+            className="group flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
+          >
+            Early access
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </div>
       </div>
     </header>
   );

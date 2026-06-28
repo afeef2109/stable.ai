@@ -70,6 +70,39 @@
   --shadow-elegant: 0 20px 60px -20px oklch(0 0 0 / 0.12);
 }
 
+html.dark {
+  color-scheme: dark;
+  --background: oklch(0.13 0.022 260);
+  --foreground: #EAB308;
+  --surface: oklch(0.17 0.024 260);
+  --surface-2: oklch(0.20 0.026 260);
+  --card: oklch(0.17 0.024 260);
+  --card-foreground: #EAB308;
+  --popover: oklch(0.17 0.024 260);
+  --popover-foreground: #EAB308;
+  --primary: oklch(0.65 0.19 55);
+  --primary-foreground: oklch(0.13 0.022 260);
+  --secondary: oklch(0.20 0.026 260);
+  --secondary-foreground: #EAB308;
+  --muted: oklch(0.20 0.026 260);
+  --muted-foreground: oklch(0.68 0.04 80);
+  --accent: oklch(0.72 0.18 75);
+  --accent-foreground: oklch(0.13 0.022 260);
+  --destructive: oklch(0.60 0.22 27);
+  --destructive-foreground: oklch(0.98 0.002 240);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.65 0.19 55 / 50%);
+  --orange: #F97316;
+  --gold: #EAB308;
+
+  --gradient-hero: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(234,179,8,0.18), transparent 70%);
+  --gradient-primary: linear-gradient(135deg, #F97316 0%, #EAB308 100%);
+  --gradient-soft: linear-gradient(180deg, oklch(0.17 0.024 260) 0%, oklch(0.13 0.022 260) 100%);
+  --shadow-glow: 0 0 60px -10px rgba(234,179,8,0.35);
+  --shadow-elegant: 0 20px 60px -20px oklch(0 0 0 / 0.5);
+}
+
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
@@ -81,6 +114,27 @@
   }
   ::selection { background: var(--orange); color: #ffffff; }
 }
+
+html.dark .glass {
+  background: color-mix(in oklab, oklch(0.17 0.024 260) 85%, transparent);
+  border: 1px solid oklch(1 0 0 / 0.08);
+}
+html.dark .glass-strong {
+  background: color-mix(in oklab, oklch(0.18 0.025 260) 92%, transparent);
+  border: 1px solid oklch(1 0 0 / 0.10);
+}
+html.dark .grid-bg {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+html.dark [class*="border-black\/"] { border-color: oklch(1 0 0 / 0.10) !important; }
+html.dark [class*="bg-black\/"] { background-color: oklch(1 0 0 / 0.05) !important; }
+html.dark [class*="hover\:bg-black\/"] { background-color: transparent !important; }
+html.dark [class*="hover\:bg-black\/"]:hover { background-color: oklch(1 0 0 / 0.06) !important; }
+html.dark [class*="divide-black\/"] > :not([hidden]) ~ :not([hidden]) { border-color: oklch(1 0 0 / 0.08) !important; }
 
 @utility text-gradient {
   background: var(--gradient-primary);
