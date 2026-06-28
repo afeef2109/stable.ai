@@ -73,19 +73,19 @@
 html.dark {
   color-scheme: dark;
   --background: oklch(0.13 0.022 260);
-  --foreground: #EAB308;
+  --foreground: oklch(0.97 0.004 240);
   --surface: oklch(0.17 0.024 260);
   --surface-2: oklch(0.20 0.026 260);
   --card: oklch(0.17 0.024 260);
-  --card-foreground: #EAB308;
+  --card-foreground: oklch(0.97 0.004 240);
   --popover: oklch(0.17 0.024 260);
-  --popover-foreground: #EAB308;
+  --popover-foreground: oklch(0.97 0.004 240);
   --primary: oklch(0.65 0.19 55);
   --primary-foreground: oklch(0.13 0.022 260);
   --secondary: oklch(0.20 0.026 260);
-  --secondary-foreground: #EAB308;
+  --secondary-foreground: oklch(0.97 0.004 240);
   --muted: oklch(0.20 0.026 260);
-  --muted-foreground: oklch(0.68 0.04 80);
+  --muted-foreground: oklch(0.72 0.01 250);
   --accent: oklch(0.72 0.18 75);
   --accent-foreground: oklch(0.13 0.022 260);
   --destructive: oklch(0.60 0.22 27);

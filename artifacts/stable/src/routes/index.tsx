@@ -256,6 +256,7 @@ function Capabilities() {
 
 /* ----------------- FIELDS GALLERY ----------------- */
 function FieldsGallery() {
+  const { theme } = useTheme();
   const items = [
     { image: galleryHealthcare, text: "Healthcare" },
     { image: galleryMilitary, text: "Military" },
@@ -288,7 +289,7 @@ function FieldsGallery() {
             <CircularGallery
               items={items}
               bend={3}
-              textColor="#1a1a2e"
+              textColor={theme === "dark" ? "#ffffff" : "#1a1a2e"}
               borderRadius={0.05}
               scrollEase={0.05}
             />
