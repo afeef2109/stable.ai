@@ -26,7 +26,8 @@ import {
   Mail,
 } from "lucide-react";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { cn } from "@/lib/utils";
 import {
   Select,
@@ -124,11 +125,11 @@ function Hero() {
     <section id="top" className="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-6 pt-32">
       {/* Background layers */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 opacity-25">
-          <SoftAurora color1="#EF4444" color2="#EF4444" />
+        <div className="absolute inset-0 opacity-60">
+          <SoftAurora color1="#EF4444" color2="#F04A30" />
         </div>
-        <div className="absolute inset-0 bg-background/55" />
-        <div className="grid-bg mask-fade-y absolute inset-0 opacity-40" />
+        <div className="absolute inset-0 bg-background/40" />
+        <div className="grid-bg mask-fade-y absolute inset-0 opacity-60" />
         <div
           className="absolute inset-0"
           style={{ background: "var(--gradient-hero)" }}
@@ -604,28 +605,34 @@ function Faq() {
 
 /* ----------------- CONTACT ----------------- */
 function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [reason, setReason] = useState("early-access");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    setStatus("loading");
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      );
+      setStatus("success");
+      formRef.current.reset();
+      setReason("early-access");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   const cards = [
-    {
-      icon: Mail,
-      title: "Email",
-      body: "Founder (afeef2109@gmail.com)",
-    },
-    {
-      icon: Users,
-      title: "Partnerships",
-      body: "Looking to become a design partner or integrate STABL into your AI stack.",
-    },
-    {
-      icon: BarChart3,
-      title: "Investors",
-      body: "Interested in learning about STABL's vision, roadmap, and traction? Let's connect.",
-    },
-    {
-      icon: Zap,
-      title: "Early Access",
-      body: "Join the beta and help shape the future of AI reliability.",
-    },
+    { icon: Mail, title: "Email", body: "Founder (afeef2109@gmail.com)" },
+    { icon: Users, title: "Partnerships", body: "Looking to become a design partner or integrate STABL into your AI stack." },
+    { icon: BarChart3, title: "Investors", body: "Interested in learning about STABL's vision, roadmap, and traction? Let's connect." },
+    { icon: Zap, title: "Early Access", body: "Join the beta and help shape the future of AI reliability." },
   ];
   const inputCls =
     "w-full rounded-xl border border-black/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20";
@@ -683,10 +690,8 @@ function Contact() {
           {/* Contact form */}
           <Reveal delay={0.1}>
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
+              ref={formRef}
+              onSubmit={handleSubmit}
               className="glass-strong space-y-4 rounded-3xl p-6 sm:p-8"
             >
               <div className="grid gap-4 sm:grid-cols-2">
@@ -696,6 +701,7 @@ function Contact() {
                   </span>
                   <input
                     type="text"
+                    name="from_name"
                     className={inputCls}
                     placeholder="John Doe"
                     required
@@ -707,6 +713,7 @@ function Contact() {
                   </span>
                   <input
                     type="email"
+                    name="reply_to"
                     className={inputCls}
                     placeholder="you@company.com"
                     required
@@ -720,6 +727,7 @@ function Contact() {
                   </span>
                   <input
                     type="text"
+                    name="company"
                     className={inputCls}
                     placeholder="Acme Inc."
                     required
@@ -729,29 +737,17 @@ function Contact() {
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                     Reason for Contact
                   </span>
-                  <Select defaultValue="early-access">
-                    <SelectTrigger
-                      className={cn(
-                        inputCls,
-                        "h-auto cursor-pointer pr-8"
-                      )}
-                    >
+                  <input type="hidden" name="reason" value={reason} />
+                  <Select value={reason} onValueChange={setReason}>
+                    <SelectTrigger className={cn(inputCls, "h-auto cursor-pointer pr-8")}>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl border-black/10 bg-white">
-                      <SelectItem value="early-access">
-                        Request Early Access
-                      </SelectItem>
+                      <SelectItem value="early-access">Request Early Access</SelectItem>
                       <SelectItem value="demo">Book a Demo</SelectItem>
-                      <SelectItem value="design-partner">
-                        Become a Design Partner
-                      </SelectItem>
-                      <SelectItem value="investor">
-                        Investor Inquiry
-                      </SelectItem>
-                      <SelectItem value="general">
-                        General Contact
-                      </SelectItem>
+                      <SelectItem value="design-partner">Become a Design Partner</SelectItem>
+                      <SelectItem value="investor">Investor Inquiry</SelectItem>
+                      <SelectItem value="general">General Contact</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -762,22 +758,53 @@ function Contact() {
                 </span>
                 <textarea
                   rows={4}
+                  name="message"
                   className={inputCls}
                   placeholder="Tell us what you're building or how we can help..."
                   required
                 />
               </label>
+
+              {/* Status messages */}
+              {status === "success" && (
+                <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+                  <span className="text-base">✓</span>
+                  Message sent! We'll get back to you within 24–48 hours.
+                </div>
+              )}
+              {status === "error" && (
+                <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  <span className="text-base">⚠</span>
+                  Something went wrong. Please try again or email us directly.
+                </div>
+              )}
+
               <div className="flex flex-col items-stretch justify-between gap-3 pt-2 sm:flex-row sm:items-center">
                 <p className="text-xs text-muted-foreground">
                   We typically respond within 24–48 hours.
                 </p>
                 <button
                   type="submit"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-background shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-transform hover:scale-[1.02]"
+                  disabled={status === "loading"}
+                  className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                   style={{ background: "var(--gradient-primary)" }}
                 >
-                  {submitted ? "Message sent" : "Send Message"}
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  {status === "loading" ? (
+                    <>
+                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+                      </svg>
+                      Sending…
+                    </>
+                  ) : status === "success" ? (
+                    <>✓ Sent!</>
+                  ) : (
+                    <>
+                      Send Message
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </>
+                  )}
                 </button>
               </div>
             </form>
