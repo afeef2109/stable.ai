@@ -46,12 +46,12 @@ import SoftAurora from "@/components/reactbits/SoftAurora/SoftAurora";
 import CircularGallery from "@/components/reactbits/CircularGallery/CircularGallery";
 const UNSPLASH = "?auto=format&fit=crop&w=1200&q=80";
 const galleryHealthcare = `https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0${UNSPLASH}`;
-const galleryMilitary = `https://images.unsplash.com/photo-1526716173434-a1b560f2065d${UNSPLASH}`;
-const galleryDefense = `https://images.unsplash.com/photo-1550751827-4bd374c3f58b${UNSPLASH}`;
-const gallerySovereignty = `https://images.unsplash.com/photo-1554232456-8727aae0cfa4${UNSPLASH}`;
-const galleryAutonomy = `https://images.unsplash.com/photo-1494976388531-d1058494cdd8${UNSPLASH}`;
+const galleryMilitary = `https://images.unsplash.com/photo-1580082932707-520aed937b7b${UNSPLASH}`;
+const galleryDefense = `https://images.unsplash.com/photo-1561409106-5d1c3fd7e20a${UNSPLASH}`;
+const gallerySovereignty = `https://images.unsplash.com/photo-1524820197268-2bd8b4455b5a${UNSPLASH}`;
+const galleryAutonomy = `https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7${UNSPLASH}`;
 const galleryRobotics = `https://images.unsplash.com/photo-1485827404703-89b55fcc595e${UNSPLASH}`;
-const galleryAi = `https://images.unsplash.com/photo-1620712943543-bcc4688e7485${UNSPLASH}`;
+const galleryAi = `https://images.unsplash.com/photo-1589254065878-42efea3f5dda${UNSPLASH}`;
 const galleryLifescience = `https://images.unsplash.com/photo-1532187863486-abf9dbad1b69${UNSPLASH}`;
 
 export const Route = createFileRoute("/")({
@@ -125,7 +125,7 @@ function Hero() {
       {/* Background layers */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 opacity-80">
-          <SoftAurora color1="#F97316" color2="#EF4444" />
+          <SoftAurora color1="#EF4444" color2="#EF4444" />
         </div>
         <div className="absolute inset-0 bg-background/55" />
         <div className="grid-bg mask-fade-y absolute inset-0 opacity-40" />
@@ -140,8 +140,8 @@ function Hero() {
         <Reveal>
           <div className="glass mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#F97316] opacity-60" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#F97316]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#EF4444] opacity-60" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#EF4444]" />
             </span>
             <span className="text-muted-foreground">Now in private beta · enterprise pilots open</span>
           </div>
@@ -150,23 +150,13 @@ function Hero() {
         <Reveal delay={0.05}>
           <div
             className="mx-auto flex h-auto w-64 items-center justify-center sm:w-80"
-            style={{ filter: "drop-shadow(0 0 24px rgba(249,115,22,0.55))" }}
+            style={{ filter: "drop-shadow(0 0 32px rgba(239,68,68,0.5))" }}
           >
-            <span
-              style={{
-                fontFamily: "var(--font-sans)",
-                fontWeight: 800,
-                letterSpacing: "0.12em",
-                fontSize: "3.5rem",
-                background: "var(--gradient-primary)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-                display: "inline-block",
-              }}
-            >
-              STABLE
-            </span>
+            <img
+              src="/stable-logo-nobg.png"
+              alt="STABLE"
+              style={{ width: "100%", height: "auto", objectFit: "contain" }}
+            />
           </div>
         </Reveal>
 
@@ -190,7 +180,7 @@ function Hero() {
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-background shadow-[0_10px_40px_-10px_rgba(249,115,22,0.6)] transition-transform hover:scale-[1.02]"
+              className="group relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-background shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-transform hover:scale-[1.02]"
               style={{ background: "var(--gradient-primary)" }}
             >
               Get early access
@@ -211,7 +201,7 @@ function Hero() {
           <span>Scroll</span>
           <div className="relative h-10 w-[1px] overflow-hidden bg-white/10">
             <span
-              className="absolute left-0 top-0 h-3 w-[1px] bg-[#F97316]"
+              className="absolute left-0 top-0 h-3 w-[1px] bg-[#EF4444]"
               style={{ animation: "scroll-hint 1.6s ease-in-out infinite" }}
             />
           </div>
@@ -235,7 +225,7 @@ function Capabilities() {
         {items.map((it, i) => (
           <Reveal key={it.title} delay={i * 0.06}>
             <Card>
-              <it.icon className="h-5 w-5 text-[#F97316]" />
+              <it.icon className="h-5 w-5 text-[#EF4444]" />
               <h3 className="mt-6 text-lg font-medium">{it.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{it.body}</p>
             </Card>
@@ -264,7 +254,7 @@ function FieldsGallery() {
         <Reveal>
           <div className="mb-14 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              <span className="h-1 w-1 rounded-full bg-[#F97316]" />
+              <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               Industries
             </div>
             <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
@@ -304,7 +294,7 @@ function DashboardSection() {
           <div
             aria-hidden
             className="pointer-events-none absolute -inset-10 -z-10 rounded-[3rem] opacity-60 blur-3xl"
-            style={{ background: "radial-gradient(60% 50% at 50% 40%, rgba(249,115,22,0.25), transparent 70%)" }}
+            style={{ background: "radial-gradient(60% 50% at 50% 40%, rgba(239,68,68,0.25), transparent 70%)" }}
           />
           <DashboardPreview />
         </div>
@@ -369,7 +359,7 @@ function HowItWorks() {
           <Reveal key={s.title} delay={i * 0.06}>
             <Card>
               <div className="flex items-center justify-between">
-                <s.icon className="h-5 w-5 text-[#EAB308]" />
+                <s.icon className="h-5 w-5 text-[#F04A30]" />
                 <span className="font-mono text-xs text-muted-foreground">Step {i + 1}</span>
               </div>
               <h3 className="mt-6 text-lg font-medium">{s.title}</h3>
@@ -404,7 +394,7 @@ function CoreFeatures() {
         {features.map((f, i) => (
           <Reveal key={f.title} delay={(i % 3) * 0.05}>
             <Card>
-              <f.icon className="h-5 w-5 text-[#F97316]" />
+              <f.icon className="h-5 w-5 text-[#EF4444]" />
               <h3 className="mt-5 text-base font-medium">{f.title}</h3>
               <p className="mt-1.5 text-sm text-muted-foreground">{f.body}</p>
             </Card>
@@ -447,7 +437,7 @@ function UseCases() {
             <Card padded>
               <div className="flex items-start gap-4">
                 <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04]">
-                  <c.icon className="h-5 w-5 text-[#EAB308]" />
+                  <c.icon className="h-5 w-5 text-[#F04A30]" />
                 </div>
                 <div className="min-w-0">
                   <h3 className="text-lg font-medium">{c.title}</h3>
@@ -638,7 +628,7 @@ function Contact() {
     },
   ];
   const inputCls =
-    "w-full rounded-xl border border-white/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#F97316]/60 focus:ring-2 focus:ring-[#F97316]/20";
+    "w-full rounded-xl border border-white/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20";
   return (
     <section id="contact" className="relative px-6 py-28 sm:py-36">
       <div className="mx-auto max-w-7xl">
@@ -656,7 +646,7 @@ function Contact() {
         <Reveal>
           <div className="mb-14 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              <span className="h-1 w-1 rounded-full bg-[#F97316]" />
+              <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               Contact
             </div>
             <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
@@ -678,7 +668,7 @@ function Contact() {
                 <Card padded>
                   <div className="flex items-start gap-4">
                     <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.04]">
-                      <c.icon className="h-5 w-5 text-[#F97316]" />
+                      <c.icon className="h-5 w-5 text-[#EF4444]" />
                     </div>
                     <div className="min-w-0">
                       <h3 className="text-base font-medium">{c.title}</h3>
@@ -783,7 +773,7 @@ function Contact() {
                 </p>
                 <button
                   type="submit"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-background shadow-[0_10px_40px_-10px_rgba(249,115,22,0.6)] transition-transform hover:scale-[1.02]"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-background shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-transform hover:scale-[1.02]"
                   style={{ background: "var(--gradient-primary)" }}
                 >
                   {submitted ? "Message sent" : "Send Message"}
@@ -810,7 +800,7 @@ function Footer() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 opacity-40"
-        style={{ background: "radial-gradient(60% 60% at 50% 100%, rgba(249,115,22,0.18), transparent 70%)" }}
+        style={{ background: "radial-gradient(60% 60% at 50% 100%, rgba(239,68,68,0.18), transparent 70%)" }}
       />
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-[1.4fr_2fr]">
         <div>
@@ -834,7 +824,7 @@ function Footer() {
               <ul className="mt-4 space-y-2.5 text-sm">
                 {c.links.map((l) => (
                   <li key={l}>
-                    <a href="#" className="text-foreground/80 transition-colors hover:text-[#F97316]">{l}</a>
+                    <a href="#" className="text-foreground/80 transition-colors hover:text-[#EF4444]">{l}</a>
                   </li>
                 ))}
               </ul>
@@ -856,7 +846,7 @@ function Social({ icon: Icon }: { icon: LucideIcon }) {
   return (
     <a
       href="#"
-      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-muted-foreground transition-colors hover:border-[#F97316]/40 hover:text-[#F97316]"
+      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-muted-foreground transition-colors hover:border-[#EF4444]/40 hover:text-[#EF4444]"
     >
       <Icon className="h-4 w-4" />
     </a>
@@ -883,7 +873,7 @@ function Section({
         <Reveal>
           <div className="mb-14 max-w-3xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              <span className="h-1 w-1 rounded-full bg-[#F97316]" />
+              <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               {eyebrow}
             </div>
             <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">{title}</h2>
@@ -901,14 +891,14 @@ function Section({
 function Card({ children, padded }: { children: React.ReactNode; padded?: boolean }) {
   return (
     <div
-      className={`group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-[#F97316]/30 hover:bg-white/[0.04] ${padded ? "p-7" : "p-6"}`}
+      className={`group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-[#EF4444]/30 hover:bg-white/[0.04] ${padded ? "p-7" : "p-6"}`}
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(400px circle at var(--x,50%) var(--y,0%), rgba(249,115,22,0.10), transparent 40%)",
+            "radial-gradient(400px circle at var(--x,50%) var(--y,0%), rgba(239,68,68,0.10), transparent 40%)",
         }}
       />
       {children}
