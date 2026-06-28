@@ -1,0 +1,12 @@
+{
+  "buildCommand": "pnpm --filter @workspace/stable run build",
+  "outputDirectory": "artifacts/stable/dist/public",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
