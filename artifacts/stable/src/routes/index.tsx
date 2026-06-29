@@ -648,8 +648,8 @@ function Contact() {
 
   const cards = [
     { icon: Mail, title: "Email", body: "Founder (afeef2109@gmail.com)" },
-    { icon: Users, title: "Partnerships", body: "Looking to become a design partner or integrate STABL into your AI stack." },
-    { icon: BarChart3, title: "Investors", body: "Interested in learning about STABL's vision, roadmap, and traction? Let's connect." },
+    { icon: Users, title: "Partnerships", body: "Looking to become a design partner or integrate STABLE into your AI stack." },
+    { icon: BarChart3, title: "Investors", body: "Interested in learning about STABLE's vision, roadmap, and traction? Let's connect." },
     { icon: Zap, title: "Early Access", body: "Join the beta and help shape the future of AI reliability." },
   ];
   const inputCls =
@@ -662,7 +662,7 @@ function Contact() {
           <div className="mb-16 text-center">
             <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
               Every reliable AI system starts with trust.{" "}
-              <span className="text-gradient">Build yours with STABL.</span>
+              <span className="text-gradient">Build yours with STABLE.</span>
             </h2>
           </div>
         </Reveal>
@@ -680,7 +680,7 @@ function Contact() {
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
               Whether you're building AI products, exploring enterprise reliability, or
-              interested in partnering with STABL, we'd love to hear from you.
+              interested in partnering with STABLE, we'd love to hear from you.
             </p>
           </div>
         </Reveal>
