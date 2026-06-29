@@ -1,13 +1,8 @@
 {
-  "installCommand": "pnpm install --no-frozen-lockfile",
-  "buildCommand": "pnpm --filter @workspace/stable run build",
-  "outputDirectory": "artifacts/stable/dist",
+  "buildCommand": "npm install --legacy-peer-deps && npm run build",
+  "outputDirectory": "dist",
   "framework": null,
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "env": {
-    "NODE_ENV": "production",
-    "ENABLE_EXPERIMENTAL_COREPACK": "1"
-  }
+  ]
 }
