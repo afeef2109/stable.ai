@@ -6,3 +6,9 @@ id = "zLSAsctSwG1pU-Ndltcu6"
 uri = "file://stable-website.tar.gz"
 type = "unspecified"
 title = "STABLE Website Source Code"
+
+[[outputs]]
+id = "5Bh2qPXTKMtWTl7Qh17Bx"
+uri = "file://full-project.tar.gz"
+type = "unspecified"
+title = "STABLE — Full Project"
