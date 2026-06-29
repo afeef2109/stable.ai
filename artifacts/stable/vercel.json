@@ -1,6 +1,6 @@
 {
-  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile",
-  "buildCommand": "cd ../.. && pnpm --filter @workspace/stable run build",
+  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile --ignore-scripts",
+  "buildCommand": "pnpm run build",
   "outputDirectory": "dist",
   "framework": null,
   "rewrites": [
