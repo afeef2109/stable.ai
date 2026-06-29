@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "zLSAsctSwG1pU-Ndltcu6"
+uri = "file://stable-website.tar.gz"
+type = "unspecified"
+title = "STABLE Website Source Code"
