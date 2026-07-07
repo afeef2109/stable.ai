@@ -48,6 +48,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { DashboardPreview } from "@/components/site/DashboardPreview";
 import { ArchitectureDiagram } from "@/components/site/ArchitectureDiagram";
 import { LogoMark } from "@/components/site/LogoMark";
+import { SplineHero } from "@/components/site/SplineHero";
 import SoftAurora from "@/components/reactbits/SoftAurora/SoftAurora";
 import CircularGallery from "@/components/reactbits/CircularGallery/CircularGallery";
 
@@ -188,18 +189,31 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden px-4 pt-20 sm:px-6 sm:pt-28 lg:pt-32">
-      {/* Background layers */}
+      {/* Spline 3D scene — fills the whole hero */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 opacity-60">
-          <SoftAurora color1="#EF4444" color2="#F04A30" />
-        </div>
-        <div className="absolute inset-0 bg-background/40" />
-        <div className="grid-bg mask-fade-y absolute inset-0 opacity-60" />
+        <SplineHero />
+        {/* Subtle overlay so text stays readable */}
+        <div className="absolute inset-0 bg-background/30" />
+        <div className="grid-bg mask-fade-y absolute inset-0 opacity-40" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <Particles count={36} />
+        <Particles count={28} />
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center text-center">
+      {/* Giant "STABLE" watermark — sits behind the content, in front of the 3D scene */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+        style={{ zIndex: 0 }}
+      >
+        <span
+          className="select-none text-center font-display font-black uppercase leading-none tracking-tighter text-foreground/[0.055]"
+          style={{ fontSize: "clamp(6rem, 28vw, 22rem)", letterSpacing: "-0.04em" }}
+        >
+          STABLE
+        </span>
+      </div>
+
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center text-center" style={{ zIndex: 1 }}>
         <Reveal>
           <div className="glass mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs">
             <span className="relative flex h-1.5 w-1.5">
