@@ -187,7 +187,7 @@ function Nav() {
 /* ----------------- HERO ----------------- */
 function Hero() {
   return (
-    <section id="top" className="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-4 pt-32 sm:px-6">
+    <section id="top" className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden px-4 pt-20 sm:px-6 sm:pt-28 lg:pt-32">
       {/* Background layers */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 opacity-60">
@@ -224,7 +224,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <h1 className="mt-8 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="mt-8 w-full text-balance text-[clamp(1.75rem,8vw,3rem)] font-semibold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Enterprise AI
             <br />
             <span style={{ color: "#F04A30" }}>Reliability Infrastructure</span>
@@ -570,19 +570,21 @@ print(report.reliability_score)  # 94.6`}
 
 function CodeBlock({ title, code, lang }: { title: string; code: string; lang: string }) {
   return (
-    <div className="glass overflow-hidden rounded-2xl">
+    <div className="glass rounded-2xl" style={{ minWidth: 0 }}>
       <div className="flex items-center justify-between border-b border-black/5 px-4 py-2.5">
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="flex min-w-0 items-center gap-2 text-xs text-muted-foreground">
           <Boxes className="h-3.5 w-3.5 shrink-0" />
-          <span className="font-mono">{title}</span>
+          <span className="truncate font-mono">{title}</span>
         </div>
-        <span className="shrink-0 rounded-full border border-black/10 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+        <span className="ml-2 shrink-0 rounded-full border border-black/10 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
           {lang}
         </span>
       </div>
-      <pre className="overflow-x-auto p-4 font-mono text-[11.5px] leading-relaxed text-foreground/90 sm:p-5 sm:text-[12.5px]">
-        <code>{code}</code>
-      </pre>
+      <div className="overflow-x-auto">
+        <pre className="min-w-0 p-4 font-mono text-[11px] leading-relaxed text-foreground/90 sm:p-5 sm:text-[12.5px]">
+          <code>{code}</code>
+        </pre>
+      </div>
     </div>
   );
 }
@@ -878,9 +880,9 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-black/8">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:px-6 sm:py-6">
-          <span>© {new Date().getFullYear()} STABLE Labs, Inc. All rights reserved.</span>
-          <span className="font-mono">stable.ai · enterprise reliability for AI</span>
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-1.5 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:px-6 sm:py-6">
+          <span className="text-pretty">© {new Date().getFullYear()} STABLE Labs, Inc. All rights reserved.</span>
+          <span className="font-mono text-[11px]">stable.ai · enterprise reliability for AI</span>
         </div>
       </div>
     </footer>

@@ -47,7 +47,7 @@ export function ArchitectureDiagram() {
         <div className={node}>Trace store</div>
         <div className={node}>Eval datasets</div>
         <div className={node}>Reliability scores</div>
-        <div className={cn(node, "col-span-2 md:col-span-1")}>Alerts · Webhooks</div>
+        <div className={node}>Alerts · Webhooks</div>
       </div>
     </div>
   );
