@@ -1,0 +1,1 @@
+- [Vercel deployment for pnpm monorepo](vercel-deploy.md) — output to `public/`, rename source assets to `static/`, use npm not pnpm on Vercel.

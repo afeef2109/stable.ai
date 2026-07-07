@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -17,12 +17,14 @@ import {
   Layers,
   Lock,
   type LucideIcon,
+  Menu,
   Moon,
   ShieldCheck,
   Sparkles,
   Sun,
   Users,
   Workflow,
+  X,
   Zap,
   Globe,
   Mail,
@@ -48,6 +50,7 @@ import { ArchitectureDiagram } from "@/components/site/ArchitectureDiagram";
 import { LogoMark } from "@/components/site/LogoMark";
 import SoftAurora from "@/components/reactbits/SoftAurora/SoftAurora";
 import CircularGallery from "@/components/reactbits/CircularGallery/CircularGallery";
+
 const UNSPLASH = "?auto=format&fit=crop&w=1200&q=80";
 const galleryHealthcare = `https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0${UNSPLASH}`;
 const galleryMilitary = `/gallery-military.jpg`;
@@ -87,6 +90,7 @@ function LandingPage() {
 /* ----------------- NAV ----------------- */
 function Nav() {
   const { theme, toggle } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
   const links = [
     { href: "#platform", label: "Platform" },
     { href: "#how", label: "How it works" },
@@ -96,41 +100,85 @@ function Nav() {
   ];
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
-      <div className="glass flex w-full max-w-6xl items-center justify-between gap-4 rounded-full px-3 py-2">
-        <a href="#top" className="flex items-center gap-2 pl-2">
-          <LogoMark className="h-5 w-auto" />
-        </a>
-        <nav className="hidden items-center gap-1 md:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground"
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={toggle}
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-            className="grid h-8 w-8 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-all hover:bg-black/[0.07] hover:text-foreground"
-          >
-            {theme === "dark" ? (
-              <Sun className="h-4 w-4" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            )}
-          </button>
-          <a
-            href="#contact"
-            className="group flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.02]"
-          >
-            Early access
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+      <div className="glass flex w-full max-w-6xl flex-col rounded-2xl md:rounded-full">
+        {/* Main bar */}
+        <div className="flex items-center justify-between gap-4 px-3 py-2">
+          <a href="#top" className="flex items-center gap-2 pl-2">
+            <LogoMark className="h-5 w-auto" />
           </a>
+
+          {/* Desktop nav */}
+          <nav className="hidden items-center gap-1 md:flex">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggle}
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-all hover:bg-black/[0.07] hover:text-foreground"
+            >
+              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+            <a
+              href="#contact"
+              className="group hidden items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.02] sm:flex"
+            >
+              Early access
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            </a>
+            {/* Hamburger */}
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label="Toggle menu"
+              className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-all hover:bg-black/[0.07] hover:text-foreground md:hidden"
+            >
+              {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile dropdown */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
+              className="overflow-hidden md:hidden"
+            >
+              <nav className="flex flex-col gap-1 px-3 pb-3 pt-1">
+                {links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="min-h-[44px] rounded-xl px-4 py-3 text-sm text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground flex items-center"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+                <a
+                  href="#contact"
+                  onClick={() => setMenuOpen(false)}
+                  className="mt-2 flex min-h-[44px] items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-2.5 text-sm font-medium text-background"
+                >
+                  Early access
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </a>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
@@ -139,7 +187,7 @@ function Nav() {
 /* ----------------- HERO ----------------- */
 function Hero() {
   return (
-    <section id="top" className="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-6 pt-32">
+    <section id="top" className="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-4 pt-32 sm:px-6">
       {/* Background layers */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 opacity-60">
@@ -147,14 +195,11 @@ function Hero() {
         </div>
         <div className="absolute inset-0 bg-background/40" />
         <div className="grid-bg mask-fade-y absolute inset-0 opacity-60" />
-        <div
-          className="absolute inset-0"
-          style={{ background: "var(--gradient-hero)" }}
-        />
+        <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <Particles count={36} />
       </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
+      <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center text-center">
         <Reveal>
           <div className="glass mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs">
             <span className="relative flex h-1.5 w-1.5">
@@ -167,7 +212,7 @@ function Hero() {
 
         <Reveal delay={0.05}>
           <div
-            className="mx-auto flex h-auto w-64 items-center justify-center sm:w-80"
+            className="mx-auto flex h-auto w-48 items-center justify-center sm:w-64 md:w-80"
             style={{ filter: "drop-shadow(0 0 32px rgba(239,68,68,0.5))" }}
           >
             <img
@@ -179,7 +224,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={0.15}>
-          <h1 className="mt-10 text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl">
+          <h1 className="mt-8 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Enterprise AI
             <br />
             <span style={{ color: "#F04A30" }}>Reliability Infrastructure</span>
@@ -187,7 +232,7 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={0.25}>
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-pretty px-2 text-base text-muted-foreground sm:text-lg">
             Monitor, evaluate, and improve AI systems with real-time observability,
             reliability scoring, and production-grade insights — the control plane
             for AI in production.
@@ -195,10 +240,10 @@ function Hero() {
         </Reveal>
 
         <Reveal delay={0.35}>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 px-4 sm:flex-row sm:px-0">
             <a
               href="#contact"
-              className="group relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-background shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-transform hover:scale-[1.02]"
+              className="group relative inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium text-background shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-transform hover:scale-[1.02] sm:w-auto"
               style={{ background: "var(--gradient-primary)" }}
             >
               Get early access
@@ -206,7 +251,7 @@ function Hero() {
             </a>
             <a
               href="#contact"
-              className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium hover:bg-black/[0.06]"
+              className="glass inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium hover:bg-black/[0.06] sm:w-auto"
             >
               Book a demo
               <ArrowUpRight className="h-4 w-4" />
@@ -215,7 +260,7 @@ function Hero() {
         </Reveal>
 
         {/* Scroll indicator */}
-        <div className="mt-20 flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+        <div className="mt-16 flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:mt-20">
           <span>Scroll</span>
           <div className="relative h-10 w-[1px] overflow-hidden bg-black/10">
             <span
@@ -239,7 +284,7 @@ function Capabilities() {
   ];
   return (
     <Section id="platform" eyebrow="Platform" title="The reliability layer for AI in production" subtitle="STABLE sits between your application and your models — measuring, scoring, and protecting every interaction.">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((it, i) => (
           <Reveal key={it.title} delay={i * 0.06}>
             <Card>
@@ -268,10 +313,10 @@ function FieldsGallery() {
     { image: galleryLifescience, text: "Life Science" },
   ];
   return (
-    <section id="fields" className="relative px-6 py-28 sm:py-36">
+    <section id="fields" className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="mb-14 text-center">
+          <div className="mb-10 text-center sm:mb-14">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               Industries
@@ -279,13 +324,13 @@ function FieldsGallery() {
             <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
               We <span className="text-gradient">Help In Every Field</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-pretty px-2 text-base text-muted-foreground sm:text-lg">
               From hospitals to command centers — STABLE powers mission-critical AI across every regulated industry.
             </p>
           </div>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="relative h-[560px] w-full overflow-hidden rounded-3xl border border-black/10 bg-black/[0.02]">
+          <div className="relative h-[300px] w-full overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02] sm:h-[420px] sm:rounded-3xl lg:h-[560px]">
             <CircularGallery
               items={items}
               bend={3}
@@ -334,11 +379,11 @@ function WhyFail() {
   ];
   return (
     <Section eyebrow="The problem" title="Why AI systems fail in production" subtitle="The hardest part of shipping AI isn't building it — it's keeping it reliable as models, prompts, and traffic change.">
-      <div className="grid gap-px overflow-hidden rounded-3xl border border-black/5 bg-black/5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-px overflow-hidden rounded-2xl border border-black/5 bg-black/5 sm:grid-cols-2 lg:grid-cols-3 lg:rounded-3xl">
         {reasons.map((r, i) => (
-          <div key={r.title} className="group relative bg-background p-8 transition-colors hover:bg-black/[0.02]">
+          <div key={r.title} className="group relative bg-background p-6 transition-colors hover:bg-black/[0.02] sm:p-8">
             <div className="font-mono text-xs text-muted-foreground">0{i + 1}</div>
-            <h3 className="mt-4 text-lg font-medium">{r.title}</h3>
+            <h3 className="mt-4 text-base font-medium sm:text-lg">{r.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{r.body}</p>
           </div>
         ))}
@@ -373,7 +418,7 @@ function HowItWorks() {
   ];
   return (
     <Section id="how" eyebrow="How it works" title="From first request to production-grade reliability" subtitle="A single integration replaces a patchwork of logging, evals, and homegrown dashboards.">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((s, i) => (
           <Reveal key={s.title} delay={i * 0.06}>
             <Card>
@@ -427,30 +472,14 @@ function CoreFeatures() {
 /* ----------------- USE CASES ----------------- */
 function UseCases() {
   const cases = [
-    {
-      icon: Bot,
-      title: "Customer-facing copilots",
-      body: "Catch hallucinations and tone regressions before they reach end users.",
-    },
-    {
-      icon: Database,
-      title: "RAG over private data",
-      body: "Measure groundedness against retrieved context and detect retrieval failures.",
-    },
-    {
-      icon: Workflow,
-      title: "Multi-step agents",
-      body: "Trace tool use, plan steps, and recoveries with full step-level reliability.",
-    },
-    {
-      icon: Cpu,
-      title: "Internal AI platforms",
-      body: "Give every team a shared gateway, reliability SLOs, and governance.",
-    },
+    { icon: Bot, title: "Customer-facing copilots", body: "Catch hallucinations and tone regressions before they reach end users." },
+    { icon: Database, title: "RAG over private data", body: "Measure groundedness against retrieved context and detect retrieval failures." },
+    { icon: Workflow, title: "Multi-step agents", body: "Trace tool use, plan steps, and recoveries with full step-level reliability." },
+    { icon: Cpu, title: "Internal AI platforms", body: "Give every team a shared gateway, reliability SLOs, and governance." },
   ];
   return (
     <Section eyebrow="Enterprise use cases" title="Built for teams shipping AI to customers" subtitle="From single copilots to large internal AI platforms — STABLE scales with the surface area of your AI footprint.">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2">
         {cases.map((c, i) => (
           <Reveal key={c.title} delay={i * 0.06}>
             <Card padded>
@@ -459,7 +488,7 @@ function UseCases() {
                   <c.icon className="h-5 w-5 text-[#F04A30]" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-lg font-medium">{c.title}</h3>
+                  <h3 className="text-base font-medium sm:text-lg">{c.title}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{c.body}</p>
                 </div>
               </div>
@@ -544,14 +573,14 @@ function CodeBlock({ title, code, lang }: { title: string; code: string; lang: s
     <div className="glass overflow-hidden rounded-2xl">
       <div className="flex items-center justify-between border-b border-black/5 px-4 py-2.5">
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Boxes className="h-3.5 w-3.5" />
+          <Boxes className="h-3.5 w-3.5 shrink-0" />
           <span className="font-mono">{title}</span>
         </div>
-        <span className="rounded-full border border-black/10 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+        <span className="shrink-0 rounded-full border border-black/10 px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
           {lang}
         </span>
       </div>
-      <pre className="overflow-x-auto p-5 font-mono text-[12.5px] leading-relaxed text-foreground/90">
+      <pre className="overflow-x-auto p-4 font-mono text-[11.5px] leading-relaxed text-foreground/90 sm:p-5 sm:text-[12.5px]">
         <code>{code}</code>
       </pre>
     </div>
@@ -596,7 +625,7 @@ function Faq() {
             <div key={it.q}>
               <button
                 onClick={() => setOpen(isOpen ? null : i)}
-                className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors hover:bg-black/[0.02]"
+                className="flex min-h-[56px] w-full items-center justify-between gap-4 px-4 py-4 text-left transition-colors hover:bg-black/[0.02] sm:gap-6 sm:px-6"
               >
                 <span className="text-sm font-medium sm:text-base">{it.q}</span>
                 <span
@@ -611,7 +640,7 @@ function Faq() {
                 transition={{ duration: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
                 className="overflow-hidden"
               >
-                <p className="px-6 pb-6 text-sm text-muted-foreground">{it.a}</p>
+                <p className="px-4 pb-5 text-sm text-muted-foreground sm:px-6 sm:pb-6">{it.a}</p>
               </motion.div>
             </div>
           );
@@ -653,13 +682,13 @@ function Contact() {
     { icon: Zap, title: "Early Access", body: "Join the beta and help shape the future of AI reliability." },
   ];
   const inputCls =
-    "w-full rounded-xl border border-black/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20";
+    "w-full rounded-xl border border-black/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20 min-h-[44px]";
   return (
-    <section id="contact" className="relative px-6 py-28 sm:py-36">
+    <section id="contact" className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
         {/* Final CTA */}
         <Reveal>
-          <div className="mb-16 text-center">
+          <div className="mb-12 text-center sm:mb-16">
             <h2 className="text-balance text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
               Every reliable AI system starts with trust.{" "}
               <span className="text-gradient">Build yours with STABLE.</span>
@@ -669,7 +698,7 @@ function Contact() {
 
         {/* Headline */}
         <Reveal>
-          <div className="mb-14 text-center">
+          <div className="mb-10 text-center sm:mb-14">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               Contact
@@ -678,7 +707,7 @@ function Contact() {
               Let's Build Reliable AI{" "}
               <span className="text-gradient">Together</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-pretty px-2 text-base text-muted-foreground sm:text-lg">
               Whether you're building AI products, exploring enterprise reliability, or
               interested in partnering with STABLE, we'd love to hear from you.
             </p>
@@ -710,32 +739,20 @@ function Contact() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="glass-strong space-y-4 rounded-3xl p-6 sm:p-8"
+              className="glass-strong space-y-4 rounded-2xl p-5 sm:rounded-3xl sm:p-8"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                     Full Name
                   </span>
-                  <input
-                    type="text"
-                    name="from_name"
-                    className={inputCls}
-                    placeholder="John Doe"
-                    required
-                  />
+                  <input type="text" name="from_name" className={inputCls} placeholder="John Doe" required />
                 </label>
                 <label className="block">
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                     Work Email
                   </span>
-                  <input
-                    type="email"
-                    name="reply_to"
-                    className={inputCls}
-                    placeholder="you@company.com"
-                    required
-                  />
+                  <input type="email" name="reply_to" className={inputCls} placeholder="you@company.com" required />
                 </label>
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -743,13 +760,7 @@ function Contact() {
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                     Company
                   </span>
-                  <input
-                    type="text"
-                    name="company"
-                    className={inputCls}
-                    placeholder="Acme Inc."
-                    required
-                  />
+                  <input type="text" name="company" className={inputCls} placeholder="Acme Inc." required />
                 </label>
                 <div>
                   <span className="mb-1.5 block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
@@ -774,16 +785,9 @@ function Contact() {
                 <span className="mb-1.5 block text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                   Message
                 </span>
-                <textarea
-                  rows={4}
-                  name="message"
-                  className={inputCls}
-                  placeholder="Tell us what you're building or how we can help..."
-                  required
-                />
+                <textarea rows={4} name="message" className={inputCls} placeholder="Tell us what you're building or how we can help..." required />
               </label>
 
-              {/* Status messages */}
               {status === "success" && (
                 <div className="flex items-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
                   <span className="text-base">✓</span>
@@ -798,20 +802,18 @@ function Contact() {
               )}
 
               <div className="flex flex-col items-stretch justify-between gap-3 pt-2 sm:flex-row sm:items-center">
-                <p className="text-xs text-muted-foreground">
-                  We typically respond within 24–48 hours.
-                </p>
+                <p className="text-xs text-muted-foreground">We typically respond within 24–48 hours.</p>
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="group inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white shadow-[0_10px_40px_-10px_rgba(239,68,68,0.6)] transition-all hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
                   style={{ background: "var(--gradient-primary)" }}
                 >
                   {status === "loading" ? (
                     <>
                       <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
                       </svg>
                       Sending…
                     </>
@@ -841,28 +843,26 @@ function Footer() {
     { title: "Resources", links: ["Documentation", "Changelog", "Status", "Privacy"] },
   ];
   return (
-    <footer className="relative mt-32 border-t border-black/8">
+    <footer className="relative mt-20 border-t border-black/8 sm:mt-32">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 opacity-40"
         style={{ background: "radial-gradient(60% 60% at 50% 100%, rgba(239,68,68,0.18), transparent 70%)" }}
       />
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-[1.4fr_2fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 md:grid-cols-[1.4fr_2fr] md:gap-12">
         <div>
           <LogoMark className="h-6 w-auto" />
-          <p className="mt-5 max-w-sm text-sm text-muted-foreground">
-            Enterprise AI reliability infrastructure. Built for the teams responsible
-            for AI in production.
+          <p className="mt-4 max-w-sm text-sm text-muted-foreground sm:mt-5">
+            Enterprise AI reliability infrastructure. Built for the teams responsible for AI in production.
           </p>
-          <div className="mt-6 flex items-center gap-2">
+          <div className="mt-5 flex items-center gap-2 sm:mt-6">
             <Social icon={GitBranch} />
             <Social icon={Globe} />
             <Social icon={Mail} />
             <Social icon={Zap} />
           </div>
-
         </div>
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8">
           {cols.map((c) => (
             <div key={c.title}>
               <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{c.title}</div>
@@ -878,7 +878,7 @@ function Footer() {
         </div>
       </div>
       <div className="border-t border-black/8">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-6 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:px-6 sm:py-6">
           <span>© {new Date().getFullYear()} STABLE Labs, Inc. All rights reserved.</span>
           <span className="font-mono">stable.ai · enterprise reliability for AI</span>
         </div>
@@ -891,7 +891,7 @@ function Social({ icon: Icon }: { icon: LucideIcon }) {
   return (
     <a
       href="#"
-      className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-colors hover:border-[#EF4444]/40 hover:text-[#EF4444]"
+      className="grid h-10 w-10 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-colors hover:border-[#EF4444]/40 hover:text-[#EF4444]"
     >
       <Icon className="h-4 w-4" />
     </a>
@@ -913,17 +913,17 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="relative px-6 py-28 sm:py-36">
+    <section id={id} className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <div className="mb-14 max-w-3xl">
+          <div className="mb-10 max-w-3xl sm:mb-14">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
               {eyebrow}
             </div>
             <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">{title}</h2>
             {subtitle && (
-              <p className="mt-5 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">{subtitle}</p>
+              <p className="mt-4 max-w-2xl text-pretty text-base text-muted-foreground sm:mt-5 sm:text-lg">{subtitle}</p>
             )}
           </div>
         </Reveal>
@@ -936,14 +936,13 @@ function Section({
 function Card({ children, padded }: { children: React.ReactNode; padded?: boolean }) {
   return (
     <div
-      className={`group relative h-full overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02] transition-colors hover:border-[#EF4444]/30 hover:bg-black/[0.04] ${padded ? "p-7" : "p-6"}`}
+      className={`group relative h-full overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02] transition-colors hover:border-[#EF4444]/30 hover:bg-black/[0.04] ${padded ? "p-5 sm:p-7" : "p-5 sm:p-6"}`}
     >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
-          background:
-            "radial-gradient(400px circle at var(--x,50%) var(--y,0%), rgba(239,68,68,0.10), transparent 40%)",
+          background: "radial-gradient(400px circle at var(--x,50%) var(--y,0%), rgba(239,68,68,0.10), transparent 40%)",
         }}
       />
       {children}
