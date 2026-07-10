@@ -100,7 +100,7 @@ function Nav() {
     { href: "#faq", label: "FAQ" },
   ];
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4" style={{ paddingTop: "max(1rem, env(safe-area-inset-top))" }}>
       <div className="glass flex w-full max-w-6xl flex-col rounded-2xl md:rounded-full">
         {/* Main bar */}
         <div className="flex items-center justify-between gap-4 px-3 py-2">
@@ -197,20 +197,6 @@ function Hero() {
         <div className="grid-bg mask-fade-y absolute inset-0 opacity-40" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <Particles count={28} />
-      </div>
-
-      {/* Giant "STABLE" watermark — sits behind the content, in front of the 3D scene */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 flex items-center justify-center"
-        style={{ zIndex: 0 }}
-      >
-        <span
-          className="select-none text-center font-display font-black uppercase leading-none tracking-tighter text-foreground/[0.055]"
-          style={{ fontSize: "clamp(6rem, 28vw, 22rem)", letterSpacing: "-0.04em" }}
-        >
-          STABLE
-        </span>
       </div>
 
       <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center text-center" style={{ zIndex: 1 }}>
@@ -698,7 +684,7 @@ function Contact() {
     { icon: Zap, title: "Early Access", body: "Join the beta and help shape the future of AI reliability." },
   ];
   const inputCls =
-    "w-full rounded-xl border border-black/10 bg-background/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20 min-h-[44px]";
+    "w-full rounded-xl border border-black/10 bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20 min-h-[44px]";
   return (
     <section id="contact" className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
