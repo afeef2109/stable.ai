@@ -863,7 +863,7 @@ function Footer() {
       </div>
       <div className="border-t border-black/8">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-1.5 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:px-6 sm:py-6">
-          <span className="text-pretty">© {new Date().getFullYear()} STABLE Labs, Inc. All rights reserved.</span>
+          <span className="text-pretty">STABLE</span>
           <span className="font-mono text-[11px]">stable.ai · enterprise reliability for AI</span>
         </div>
       </div>
