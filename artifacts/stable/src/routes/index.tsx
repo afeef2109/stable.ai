@@ -48,18 +48,6 @@ import { Reveal } from "@/components/site/Reveal";
 import { DashboardPreview } from "@/components/site/DashboardPreview";
 import { ArchitectureDiagram } from "@/components/site/ArchitectureDiagram";
 import { LogoMark } from "@/components/site/LogoMark";
-import SoftAurora from "@/components/reactbits/SoftAurora/SoftAurora";
-import CircularGallery from "@/components/reactbits/CircularGallery/CircularGallery";
-
-const UNSPLASH = "?auto=format&fit=crop&w=1200&q=80";
-const galleryHealthcare = `https://images.unsplash.com/photo-1666214280391-8ff5bd3c0bf0${UNSPLASH}`;
-const galleryMilitary = `/gallery-military.jpg`;
-const galleryDefense = `/gallery-defense.webp`;
-const gallerySovereignty = `/gallery-sovereignty.jpg`;
-const galleryAutonomy = `/gallery-autonomy-hq.jpg`;
-const galleryRobotics = `https://images.unsplash.com/photo-1485827404703-89b55fcc595e${UNSPLASH}`;
-const galleryAi = `https://images.unsplash.com/photo-1531746790731-6c087fecd65a${UNSPLASH}`;
-const galleryLifescience = `https://images.unsplash.com/photo-1532187863486-abf9dbad1b69${UNSPLASH}`;
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -296,47 +284,44 @@ function Capabilities() {
   );
 }
 
-/* ----------------- FIELDS GALLERY ----------------- */
+/* ----------------- FIELDS ----------------- */
 function FieldsGallery() {
-  const { theme } = useTheme();
-  const items = [
-    { image: galleryHealthcare, text: "Healthcare" },
-    { image: galleryMilitary, text: "Military" },
-    { image: galleryDefense, text: "Defense" },
-    { image: gallerySovereignty, text: "Sovereignty" },
-    { image: galleryAutonomy, text: "Autonomy" },
-    { image: galleryRobotics, text: "Robotics" },
-    { image: galleryAi, text: "Artificial Intelligence" },
-    { image: galleryLifescience, text: "Life Science" },
+  const fields = [
+    "Healthcare",
+    "Military",
+    "Defense",
+    "Sovereignty",
+    "Autonomy",
+    "Robotics",
+    "Artificial Intelligence",
+    "Life Science",
   ];
+
   return (
     <section id="fields" className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
-        <Reveal>
-          <div className="mb-10 text-center sm:mb-14">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
-              Industries
+        <div className="mb-10 text-center sm:mb-14">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+            <span className="h-1 w-1 rounded-full bg-[#EF4444]" />
+            Industries
+          </div>
+          <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+            We <span className="text-gradient">Help In Every Field</span>
+          </h2>
+        </div>
+        <div className="grid overflow-hidden rounded-2xl border border-black/10 sm:grid-cols-2 lg:grid-cols-4">
+          {fields.map((field, index) => (
+            <div
+              key={field}
+              className="border-b border-black/10 bg-black/[0.02] px-5 py-6 last:border-b-0 sm:nth-[n+7]:border-b-0 lg:border-b-0 lg:border-r lg:last:border-r-0"
+            >
+              <span className="font-mono text-xs text-muted-foreground">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-3 text-lg font-medium">{field}</h3>
             </div>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
-              We <span className="text-gradient">Help In Every Field</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-pretty px-2 text-base text-muted-foreground sm:text-lg">
-              From hospitals to command centers — STABLE powers mission-critical AI across every regulated industry.
-            </p>
-          </div>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <div className="relative h-[300px] w-full overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02] sm:h-[420px] sm:rounded-3xl lg:h-[560px]">
-            <CircularGallery
-              items={items}
-              bend={3}
-              textColor={theme === "dark" ? "#ffffff" : "#1a1a2e"}
-              borderRadius={0.05}
-              scrollEase={0.05}
-            />
-          </div>
-        </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
