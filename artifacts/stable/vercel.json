@@ -1,7 +1,8 @@
 {
-  "buildCommand": "cd artifacts/stable && pnpm run build",
-  "outputDirectory": "artifacts/stable/dist",
-  "framework": "vite",
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "framework": null,
   "rewrites": [
     {
       "source": "/(.*)",
