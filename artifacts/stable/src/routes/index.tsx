@@ -48,7 +48,6 @@ import { Reveal } from "@/components/site/Reveal";
 import { DashboardPreview } from "@/components/site/DashboardPreview";
 import { ArchitectureDiagram } from "@/components/site/ArchitectureDiagram";
 import { LogoMark } from "@/components/site/LogoMark";
-import { SplineHero } from "@/components/site/SplineHero";
 import SoftAurora from "@/components/reactbits/SoftAurora/SoftAurora";
 import CircularGallery from "@/components/reactbits/CircularGallery/CircularGallery";
 
@@ -189,10 +188,8 @@ function Nav() {
 function Hero() {
   return (
     <section id="top" className="relative isolate flex min-h-[100dvh] items-center justify-center overflow-hidden px-4 pt-20 sm:px-6 sm:pt-28 lg:pt-32">
-      {/* Spline 3D scene — fills the whole hero */}
+      {/* Static visual backdrop */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <SplineHero />
-        {/* Subtle overlay so text stays readable */}
         <div className="absolute inset-0 bg-background/30" />
         <div className="grid-bg mask-fade-y absolute inset-0 opacity-40" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
