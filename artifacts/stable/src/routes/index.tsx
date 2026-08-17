@@ -660,7 +660,16 @@ function Contact() {
   };
 
   const cards = [
-    { icon: Mail, title: "Email", body: "Founder (afeef2109@gmail.com)" },
+    {
+      icon: Mail,
+      title: "Email",
+      body: (
+        <>
+          <span className="block">COO · Naseehsha@gmail.com</span>
+          <span className="mt-1 block">Founder &amp; CEO · afeef2109@gmail.com</span>
+        </>
+      ),
+    },
     { icon: Users, title: "Partnerships", body: "Looking to become a design partner or integrate STABLE into your AI stack." },
     { icon: BarChart3, title: "Investors", body: "Interested in learning about STABLE's vision, roadmap, and traction? Let's connect." },
     { icon: Zap, title: "Early Access", body: "Join the beta and help shape the future of AI reliability." },
