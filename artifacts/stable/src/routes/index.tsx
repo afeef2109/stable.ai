@@ -55,7 +55,7 @@ export const Route = createFileRoute("/")({
 
 function LandingPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+    <main className="relative min-h-screen w-full min-w-0 overflow-x-hidden bg-background text-foreground">
       <CursorGlow />
       <Nav />
       <Hero />
@@ -88,7 +88,7 @@ function Nav() {
   ];
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4" style={{ paddingTop: "max(1rem, env(safe-area-inset-top))" }}>
-      <div className="glass flex w-full max-w-6xl flex-col rounded-2xl md:rounded-full">
+      <div className="glass flex w-full max-w-6xl flex-col rounded-2xl lg:rounded-full">
         {/* Main bar */}
         <div className="flex items-center justify-between gap-4 px-3 py-2">
           <a href="#top" className="flex items-center gap-2 pl-2">
@@ -96,7 +96,7 @@ function Nav() {
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 lg:flex">
             {links.map((l) => (
               <a
                 key={l.href}
@@ -118,7 +118,7 @@ function Nav() {
             </button>
             <a
               href="#contact"
-              className="group hidden items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.02] sm:flex"
+              className="group hidden items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.02] lg:flex"
             >
               Early access
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -127,7 +127,7 @@ function Nav() {
             <button
               onClick={() => setMenuOpen((v) => !v)}
               aria-label="Toggle menu"
-              className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-all hover:bg-black/[0.07] hover:text-foreground md:hidden"
+              className="grid h-9 w-9 place-items-center rounded-full border border-black/10 bg-black/[0.03] text-muted-foreground transition-all hover:bg-black/[0.07] hover:text-foreground lg:hidden"
             >
               {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
@@ -142,7 +142,7 @@ function Nav() {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
-              className="overflow-hidden md:hidden"
+              className="overflow-hidden lg:hidden"
             >
               <nav className="flex flex-col gap-1 px-3 pb-3 pt-1">
                 {links.map((l) => (
@@ -298,7 +298,7 @@ function FieldsGallery() {
   ];
 
   return (
-    <section id="fields" className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
+    <section id="fields" className="relative scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center sm:mb-14">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
@@ -309,7 +309,7 @@ function FieldsGallery() {
             We <span className="text-gradient">Help In Every Field</span>
           </h2>
         </div>
-        <div className="grid overflow-hidden rounded-2xl border border-black/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid min-w-0 overflow-hidden rounded-2xl border border-black/10 sm:grid-cols-2 lg:grid-cols-4">
           {fields.map((field, index) => (
             <div
               key={field}
@@ -336,7 +336,7 @@ function DashboardSection() {
       subtitle="Trace requests end-to-end, run continuous evaluations, and catch regressions before users do."
     >
       <Reveal>
-        <div className="relative">
+          <div className="relative min-w-0">
           <div
             aria-hidden
             className="pointer-events-none absolute -inset-10 -z-10 rounded-[3rem] opacity-60 blur-3xl"
@@ -665,8 +665,8 @@ function Contact() {
       title: "Email",
       body: (
         <>
-          <span className="mt-1 block">Founder &amp; CEO · afeef2109@gmail.com</span>
-          <span className="mt-1 block">COO · Naseehsha@gmail.com</span>
+              <span className="mt-1 block break-words">Founder &amp; CEO · afeef2109@gmail.com</span>
+              <span className="mt-1 block break-words">COO · Naseehsha@gmail.com</span>
         </>
       ),
     },
@@ -677,7 +677,7 @@ function Contact() {
   const inputCls =
     "w-full rounded-xl border border-black/10 bg-background/60 px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/70 outline-none transition-colors focus:border-[#EF4444]/60 focus:ring-2 focus:ring-[#EF4444]/20 min-h-[44px]";
   return (
-    <section id="contact" className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
+    <section id="contact" className="relative scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
         {/* Final CTA */}
         <Reveal>
@@ -906,7 +906,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="relative px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
+    <section id={id} className="relative scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28 lg:py-36">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <div className="mb-10 max-w-3xl sm:mb-14">
@@ -929,7 +929,7 @@ function Section({
 function Card({ children, padded }: { children: React.ReactNode; padded?: boolean }) {
   return (
     <div
-      className={`group relative h-full overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02] transition-colors hover:border-[#EF4444]/30 hover:bg-black/[0.04] ${padded ? "p-5 sm:p-7" : "p-5 sm:p-6"}`}
+      className={`group relative h-full min-w-0 overflow-hidden rounded-2xl border border-black/10 bg-black/[0.02] transition-colors hover:border-[#EF4444]/30 hover:bg-black/[0.04] ${padded ? "p-5 sm:p-7" : "p-5 sm:p-6"}`}
     >
       <div
         aria-hidden

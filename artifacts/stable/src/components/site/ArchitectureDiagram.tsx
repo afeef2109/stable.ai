@@ -2,7 +2,7 @@ export function ArchitectureDiagram() {
   const node = "rounded-xl border border-black/10 bg-black/[0.03] px-4 py-3 text-center text-xs font-medium backdrop-blur";
   return (
     <div className="glass rounded-2xl p-4 sm:rounded-3xl sm:p-6 lg:p-10">
-      <div className="grid gap-4 md:grid-cols-5 md:items-center md:gap-6">
+      <div className="grid gap-4 lg:grid-cols-5 lg:items-center lg:gap-6">
         {/* Left: clients */}
         <div className="space-y-2 sm:space-y-3">
           <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Applications</div>
@@ -16,7 +16,7 @@ export function ArchitectureDiagram() {
         <Connector />
 
         {/* Middle: STABLE gateway */}
-        <div className="md:col-span-1">
+        <div className="lg:col-span-1">
           <div className="relative rounded-2xl border border-[#EF4444]/30 bg-gradient-to-b from-[#EF4444]/8 to-transparent p-4 text-center shadow-[0_0_60px_-20px_#EF4444] sm:p-5">
             <div className="text-[10px] uppercase tracking-[0.2em] text-[#EF4444]">STABLE</div>
             <div className="mt-1 text-sm font-semibold sm:text-base">AI Reliability Gateway</div>
@@ -60,8 +60,8 @@ function cn(...classes: (string | undefined | false)[]) {
 function Connector() {
   return (
     <div className="flex items-center justify-center">
-      <div className="hidden h-px w-full bg-gradient-to-r from-transparent via-[#EF4444]/40 to-transparent md:block" />
-      <div className="block h-6 w-px bg-gradient-to-b from-transparent via-[#EF4444]/40 to-transparent md:hidden" />
+      <div className="hidden h-px w-full bg-gradient-to-r from-transparent via-[#EF4444]/40 to-transparent lg:block" />
+      <div className="block h-6 w-px bg-gradient-to-b from-transparent via-[#EF4444]/40 to-transparent lg:hidden" />
     </div>
   );
 }

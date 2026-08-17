@@ -110,6 +110,7 @@ html.dark {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    width: 100%;
     overflow-x: hidden;
     max-width: 100vw;
     /* iOS momentum scrolling */
@@ -123,6 +124,7 @@ html.dark {
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "cv11", "ss01";
+    min-width: 0;
     overflow-x: hidden;
     max-width: 100vw;
     /* Prevent iOS tap highlight */
@@ -131,6 +133,9 @@ html.dark {
   /* Prevent iOS auto-zoom on any input/select/textarea < 16px */
   input, select, textarea {
     font-size: max(16px, 1rem);
+  }
+  img, svg, canvas, video {
+    max-width: 100%;
   }
   /* Prevent double-tap zoom on interactive elements */
   a, button, [role="button"] {

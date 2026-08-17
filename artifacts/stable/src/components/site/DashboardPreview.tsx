@@ -22,9 +22,9 @@ export function DashboardPreview() {
         <div className="h-3 w-12 shrink-0" />
       </div>
 
-      <div className="grid gap-3 rounded-xl bg-background/60 p-3 md:grid-cols-12 md:p-4">
+      <div className="grid min-w-0 gap-3 rounded-xl bg-background/60 p-3 lg:grid-cols-12 lg:p-4">
         {/* Sidebar */}
-        <aside className="hidden md:col-span-2 md:flex md:flex-col md:gap-1">
+        <aside className="hidden lg:col-span-2 lg:flex lg:flex-col lg:gap-1">
           {["Overview", "Traces", "Evaluations", "Alerts", "Models", "Settings"].map((l, i) => (
             <div
               key={l}
@@ -36,7 +36,7 @@ export function DashboardPreview() {
         </aside>
 
         {/* Main */}
-        <div className="space-y-3 md:col-span-10">
+        <div className="min-w-0 space-y-3 lg:col-span-10">
           {/* KPI row */}
           <div className="grid grid-cols-2 gap-2 sm:gap-3 md:grid-cols-4">
             <Kpi icon={<Gauge className="h-3.5 w-3.5" />} label="Reliability" value="94.6" suffix="/100" tint="orange" />
