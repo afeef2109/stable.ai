@@ -665,8 +665,8 @@ function Contact() {
       title: "Email",
       body: (
         <>
-          <span className="block">COO · Naseehsha@gmail.com</span>
           <span className="mt-1 block">Founder &amp; CEO · afeef2109@gmail.com</span>
+          <span className="mt-1 block">COO · Naseehsha@gmail.com</span>
         </>
       ),
     },
